@@ -19,6 +19,7 @@
           .then(() => {
             // NFC scanning started successfully
             ndef.onreading = (event) => {
+              event.preventDefault();
               // NFC tag detected, handle the data
               console.log("NFC tag detected:", event.message);
               alert(event.message);
