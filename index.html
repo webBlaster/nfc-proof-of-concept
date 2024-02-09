@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NFC proof of concept</title>
+  </head>
+  <body>
+    <script defer>
+      // Check if the Web NFC API is supported
+      if ("NDEFReader" in window === false) {
+        alert("Web NFC API is not supported in this browser.");
+        console.error("Web NFC API is not supported in this browser.");
+      }
+      // Request permission to access NFC
+      const ndef = new NDEFReader();
+      ndef
+        .scan()
+        .then(() => {
+          // NFC scanning started successfully
+          ndef.onreading = (event) => {
+            // NFC tag detected, handle the data
+            console.log("NFC tag detected:", event.message);
+            alert(event.message);
+            // Process the tag data as needed
+          };
+        })
+        .catch((error) => {
+          // Error occurred while starting NFC scanning
+          console.error("Error starting NFC scan:", error);
+        });
+    </script>
+  </body>
+</html>
