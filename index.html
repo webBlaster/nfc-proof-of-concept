@@ -11,6 +11,7 @@
       if ("NDEFReader" in window === false) {
         alert("Web NFC API is not supported in this browser.");
         console.error("Web NFC API is not supported in this browser.");
+	return;
       }
       // Request permission to access NFC
       const ndef = new NDEFReader();
