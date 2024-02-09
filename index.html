@@ -7,6 +7,16 @@
   </head>
   <body>
     <script defer>
+      window.addEventListener("beforeunload", (event) => {
+        // Prevent the default action of opening the link
+        event.preventDefault();
+
+        // Stop the event propagation
+        event.stopPropagation();
+
+        // Log a message or perform any additional actions
+        console.log("NFC tag detected, default action prevented.");
+      });
       // Check if the Web NFC API is supported
       if ("NDEFReader" in window === false) {
         alert("Web NFC API is not supported in this browser.");
